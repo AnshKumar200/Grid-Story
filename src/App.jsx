@@ -1,35 +1,37 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useState } from 'react';
+import LiveCanvas from './components/LiveCanvas';
+import TimelapseViewer from './components/TimelapseViewer';
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [view, setView] = useState('canvas');
+
+  const getButtonStyle = (buttonView) => {
+    const baseStyle = "px-5 py-2 text-md font-semibold rounded-md transition-all duration-200 ease-in-out";
+    if (view === buttonView) {
+      return `${baseStyle} bg-black text-white shadow-md`;
+    }
+    return `${baseStyle} bg-gray-200 text-gray-700 hover:bg-gray-300 cursor-pointer`;
+  };
 
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    <div className="font-sans">
+      <main>
+        {view === 'canvas' ? (
+          <LiveCanvas
+            appView={view}
+            setAppView={setView}
+            getButtonStyle={getButtonStyle}
+          />
+        ) : (
+          <TimelapseViewer
+            appView={view}
+            setAppView={setView}
+            getButtonStyle={getButtonStyle}
+          />
+        )}
+      </main>
+    </div>
+  );
 }
 
-export default App
+export default App;
