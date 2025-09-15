@@ -1,8 +1,8 @@
 export const CANVAS_WIDTH = 200;
 export const CANVAS_HEIGHT = 200;
 export const PIXEL_SIZE = 2;
-export const API_URL = 'http://localhost:7878'
-export const WS_URL = 'ws://localhost:7878'
+export const API_URL = 'https://grid-story-m1yj.vercel.app'
+export const WS_URL = 'ws://grid-story-m1yj.vercel.app'
 
 export const COLOR_PALETTE = [
   '#FFFFFF', // White
