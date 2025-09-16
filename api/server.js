@@ -20,7 +20,16 @@ const PIXEL_COOLDOWN_MS = 5000;
 })();
 
 const app = express();
-app.use(cors());
+
+const corsOptions = {
+    origin: 'https://grid-story.vercel.app',
+    methods: ['GET', 'POST', 'OPTIONS'],
+    allowedHeaders: ['Content-Type'], 
+    optionsSuccessStatus: 200
+};
+
+app.use(cors(corsOptions));
+app.options('*', cors(corsOptions));
 
 app.get('/api/canvas', async (req, res) => {
     try {
