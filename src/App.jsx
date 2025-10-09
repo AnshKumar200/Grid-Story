@@ -1,37 +1,20 @@
-import { useState } from 'react';
-import LiveCanvas from './components/LiveCanvas';
-import TimelapseViewer from './components/TimelapseViewer';
+import React from 'react'
+import { Route, Routes } from 'react-router-dom'
+import HomePage from './pages/HomePage'
+import CanvasPage from './pages/CanvasPage'
+import Layout from './components/Layout'
+import About from './pages/About'
 
-function App() {
-  const [view, setView] = useState('canvas');
-
-  const getButtonStyle = (buttonView) => {
-    const baseStyle = "px-5 py-2 text-md font-semibold rounded-md transition-all duration-200 ease-in-out";
-    if (view === buttonView) {
-      return `${baseStyle} bg-black text-white shadow-md`;
-    }
-    return `${baseStyle} bg-gray-200 text-gray-700 hover:bg-gray-300 cursor-pointer`;
-  };
-
+const App = () => {
   return (
-    <div className="font-sans">
-      <main>
-        {view === 'canvas' ? (
-          <LiveCanvas
-            appView={view}
-            setAppView={setView}
-            getButtonStyle={getButtonStyle}
-          />
-        ) : (
-          <TimelapseViewer
-            appView={view}
-            setAppView={setView}
-            getButtonStyle={getButtonStyle}
-          />
-        )}
-      </main>
-    </div>
-  );
+    <Routes>
+      <Route path='/' element={<Layout />}>
+        <Route index element={<HomePage />} />
+        <Route path='/canvas' element={<CanvasPage />} />
+        <Route path='/about' element={<About />}/>
+      </Route>
+    </Routes>
+  )
 }
 
-export default App;
+export default App
